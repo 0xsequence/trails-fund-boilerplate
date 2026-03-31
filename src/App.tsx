@@ -23,6 +23,7 @@ function App() {
               hideWallets: privyWallet?.address ? [privyWallet.address] : undefined 
             }}
             buttonText='Fund your embedded wallet'
+            theme="light"
           />
           <button className="btn" onClick={logout}>Logout</button>
         </>

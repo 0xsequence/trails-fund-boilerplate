@@ -24,7 +24,6 @@ const queryClient = new QueryClient();
 
 const privyConfig: PrivyClientConfig = {
   appearance: {
-      theme: "dark",
       accentColor: "#676FFF",
       walletChainType: "ethereum-only",
   },
