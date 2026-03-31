@@ -22,3 +22,65 @@
 .btn:hover {
   box-shadow: var(--shadow);
 }
+
+.balance-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  padding: 20px 32px;
+  border-radius: 12px;
+  border: 1px solid var(--border);
+  background: var(--code-bg);
+  min-width: 180px;
+}
+
+.balance-label {
+  font-size: 13px;
+  color: var(--text);
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+  font-weight: 500;
+}
+
+.balance-label a {
+  color: var(--text-h);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.balance-label a:hover {
+  opacity: 0.7;
+}
+
+.balance-value {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 28px;
+  font-weight: 600;
+  color: var(--text-h);
+  font-variant-numeric: tabular-nums;
+}
+
+.balance-icon {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+}
+
+.balance-value.shimmer {
+  opacity: 0.4;
+  animation: pulse 1.2s ease-in-out infinite;
+}
+
+.balance-value.error {
+  color: #e55;
+  font-size: 15px;
+  font-weight: 500;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 0.4; }
+  50% { opacity: 0.15; }
+}
