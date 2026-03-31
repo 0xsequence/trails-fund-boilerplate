@@ -1,4 +1,5 @@
 import './App.css'
+import { useState } from 'react'
 import { TrailsWidget } from '0xtrails'
 import { usePrivy, useWallets } from '@privy-io/react-auth'
 import { TokenBalance } from './TokenBalance'
@@ -7,6 +8,11 @@ function App() {
   const { ready, authenticated, login, logout } = usePrivy()
   const { wallets } = useWallets()
   const privyWallet = wallets?.find((w) => w.walletClientType === 'privy')
+  const [refetchCount, setRefetchCount] = useState(0)
+
+  const handleCheckoutComplete = () => {
+    setRefetchCount(c => c + 1)
+  }
 
   if (!ready) return <div className="center">Loading...</div>
 
@@ -16,7 +22,10 @@ function App() {
       {authenticated ? (
         <>
           {privyWallet?.address && (
-            <TokenBalance address={privyWallet.address as `0x${string}`} />
+            <TokenBalance
+              address={privyWallet.address as `0x${string}`}
+              refetchTrigger={refetchCount}
+            />
           )}
           <TrailsWidget
             apiKey={import.meta.env.VITE_TRAILS_CLIENT_API_KEY!}
@@ -29,6 +38,7 @@ function App() {
             }}
             buttonText='Fund your wallet'
             theme="light"
+            onCheckoutComplete={handleCheckoutComplete}
           />
           <button className="btn" onClick={logout}>Logout</button>
         </>
