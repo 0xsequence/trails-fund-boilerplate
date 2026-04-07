@@ -34,6 +34,9 @@ jobs:
       - run: pnpm install
 
       - run: pnpm vite build --config vite.deploy.config.ts
+        env:
+          VITE_PRIVY_APP_ID: ${{ secrets.VITE_PRIVY_APP_ID }}
+          VITE_TRAILS_CLIENT_API_KEY: ${{ secrets.VITE_TRAILS_CLIENT_API_KEY }}
 
       - uses: actions/upload-pages-artifact@v3
         with:
