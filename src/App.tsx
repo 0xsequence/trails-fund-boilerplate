@@ -1,6 +1,6 @@
 import './App.css'
 import { useState } from 'react'
-import { TrailsWidget } from '0xtrails'
+import { Fund } from '0xtrails'
 import { usePrivy, useWallets } from '@privy-io/react-auth'
 import { TokenBalance } from './TokenBalance'
 
@@ -27,18 +27,17 @@ function App() {
               refetchTrigger={refetchCount}
             />
           )}
-          <TrailsWidget
+          <Fund
             apiKey={import.meta.env.VITE_TRAILS_CLIENT_API_KEY!}
-            mode="fund"
-            toAddress={privyWallet?.address}
-            toToken={"USDC"}
-            toChainId={137}
-            fundOptions={{
-              hideWallets: privyWallet?.address ? [privyWallet.address] : undefined 
+            to={{
+              recipient: privyWallet?.address,
+              token: "USDC",
+              chain: 'polygon',
             }}
+            hideWallets={privyWallet?.address ? [privyWallet.address] : undefined}
             buttonText='Fund your wallet'
             theme="light"
-            onCheckoutComplete={handleCheckoutComplete}
+            onFundingSuccess={handleCheckoutComplete}
           />
           <button className="btn" onClick={logout}>Logout</button>
         </>
